@@ -1,2 +1,2 @@
 # EOS-Ansible
-ANsible playbooks and Jina2 templates for EOS devices
+Ansible playbooks and Jina2 templates for EOS devices
