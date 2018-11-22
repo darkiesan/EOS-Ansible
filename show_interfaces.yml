@@ -1,0 +1,20 @@
+---
+- name: Show interface descriptions
+  hosts: evpn-edges
+  gather_facts: 'no'
+  connection: local
+  vars:
+    provider:
+      host: "{{ ansible_host }}"
+      username: "df"
+      password: "pzkpw51B"
+      authorize: 'yes'
+      transport: eapi
+      validate_certs: no
+      timeout: 20
+      use_ssl: True
+  tasks:
+    - eos_command:
+        provider: "{{ provider }}"
+        commands:
+        - show interfaces description

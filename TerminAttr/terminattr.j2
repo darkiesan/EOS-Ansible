@@ -1,0 +1,3 @@
+daemon TerminAttr
+   exec /usr/bin/TerminAttr -ingestgrpcurl={{ cvpip }}:9910 -taillogs -ingestauth=key,{{ ingestkey }} -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -ingestvrf=default
+   no shutdown

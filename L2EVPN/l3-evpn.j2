@@ -1,0 +1,23 @@
+vrf definition {{ vrf }}
+!
+ip routing vrf {{ vrf }}
+!
+vlan {{ vlanid }}
+!
+interface Vlan {{ vlanid }}
+   vrf forwarding {{ vrf }}
+   ip address virtual {{ ipaddress }}/{{ netmask }}
+!
+interface vxlan1
+   vxlan vlan {{ vlanid }} vni {{ vxlanid }}
+   vxlan vrf {{ vrf }} vni {{ vrfid }}
+!
+router bgp {{ asnumber }}
+   vlan {{ vlanid }}
+      rd {{ asnumber }}:{{ vlanid }}
+      route-target both {{ asnumber }}:{{ vlanid }}
+      redistribute learned 
+   vrf {{ vrf }}
+      rd {{ asnumber }}:{{ vlanid }}
+      route-target both {{ asnumber }}:{{ vrfid }}
+      redistribute connected

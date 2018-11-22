@@ -1,0 +1,21 @@
+---
+- name: Add TerminAttr conf
+  hosts: my-host-group
+  gather_facts: 'no'
+  connection: local
+  vars:
+    provider:
+      host: "{{ ansible_host }}"
+      username: "cvpadmin"
+      password: "mycvp-password"
+      authorize: 'yes'
+      transport: eapi
+      validate_certs: no
+      timeout: 20
+      use_ssl: True
+    cvpip: Ó{{ cvpip }}Ó
+    ingestkey: "{{ ingestkey }}"
+  tasks:
+    - eos_config:
+        src: terminattr.j2
+        provider: "{{ provider }}"

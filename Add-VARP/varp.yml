@@ -1,0 +1,31 @@
+---
+- name: Add vARP interface
+  hosts: my-host-group
+  gather_facts: 'no'
+  connection: local
+  vars:
+    provider:
+      host: "{{ ansible_host }}"
+      username: "myuser"
+      password: "mypassword"
+      authorize: 'yes'
+      transport: eapi
+      validate_certs: no
+      timeout: 20
+    interfaces:
+      - name: Vlan101
+        varpip: 10.0.0.1
+        subnetip: "{{ vlan101 }}"
+      - name: Vlan102
+        varpip: 10.0.1.1
+        subnetip: "{{ vlan102 }}"
+      - name: Vlan103
+        varpip: 10.0.2.1
+        subnetip: "{{ vlan103 }}"
+      - name: Vlan104
+        varpip: 10.0.3.1
+        subnetip: "{{ vlan104 }}"
+  tasks:
+    - eos_config:
+        src: varp.j2
+        provider: "{{ provider }}"

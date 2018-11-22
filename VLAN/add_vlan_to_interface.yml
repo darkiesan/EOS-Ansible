@@ -1,0 +1,21 @@
+---
+- name: Add one VLAN as access to one interface
+  hosts: my-host-group
+  gather_facts: 'no'
+  connection: local
+  vars:
+    provider:
+      host: "{{ ansible_host }}"
+      username: "myuser"
+      password: "mypassword"
+      authorize: 'yes'
+      transport: eapi
+      validate_certs: no
+      timeout: 20
+      use_ssl: True
+    interface: Ó{{ interface }}Ó
+    vlan: "{{ vlan }}"
+  tasks:
+    - eos_config:
+        src: add_vlan_to_interface.j2
+        provider: "{{ provider }}"

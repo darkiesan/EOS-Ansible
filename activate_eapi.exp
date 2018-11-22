@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+set timeout 10
+
+spawn "./scp_activate_eapi.sh"
+
+expect "assword"
+send "mypassword\r"
+expect "assword"
+send "mypassword\r"
+
+expect "assword"
+send "mypassword\r"
+expect "assword"
+send "mypassword\r"

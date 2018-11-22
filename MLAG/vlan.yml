@@ -1,0 +1,20 @@
+---
+- name: Add one VLAN several switches
+  hosts: my-host-group
+  gather_facts: 'no'
+  connection: local
+  vars:
+    provider:
+      host: "{{ ansible_host }}"
+      username: "myuser"
+      password: "mypassword"
+      authorize: 'yes'
+      transport: eapi
+      validate_certs: no
+      timeout: 20
+      use_ssl: True
+    vlanid: "{{ vlanid }}"
+  tasks:
+    - eos_config:
+        src: vlan.j2
+        provider: "{{ provider }}"

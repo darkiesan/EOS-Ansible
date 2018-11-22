@@ -1,0 +1,11 @@
+!
+vlan {{ vlanid }}
+!
+interface vxlan1
+   vxlan vlan {{ vlanid }} vni {{ vxlanid }}
+!
+router bgp {{ asnumber }}
+   vlan {{ vlanid }}
+      rd {{ asnumber }}:{{ vlanid }}
+      route-target both {{ asnumber }}:{{ vlanid }}
+      redistribute learned 

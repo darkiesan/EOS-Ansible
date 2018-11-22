@@ -1,0 +1,8 @@
+{% for intf in interfaces %}
+interface {{ intf.name }}
+   vrf forwarding {{ intf.vrf }}
+   ip virtual-router address {{ intf.varpip }}
+   ip address
+   arp timeout 600
+   
+{% endfor %}

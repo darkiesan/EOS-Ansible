@@ -1,0 +1,24 @@
+---
+- name: Add one L2 EVPN instance with IRB across several EVPN edges
+  hosts: my-host-group
+  gather_facts: 'no'
+  connection: local
+  vars:
+    provider:
+      host: "{{ ansible_host }}"
+      username: "myuser"
+      password: "mypassword"
+      authorize: 'yes'
+      transport: eapi
+      validate_certs: no
+      timeout: 20
+      use_ssl: True
+    vrfid: "{{ vrfid }}"
+    vrf: "{{ vrf }}"
+    interface: "{{ interface }}"
+    ipaddress: "{{ ipaddress }}"
+    netmask: "{{ netmask }}"
+  tasks:
+    - eos_config:
+        src: l3-evpn.j2
+        provider: "{{ provider }}"
