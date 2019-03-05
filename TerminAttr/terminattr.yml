@@ -1,13 +1,13 @@
 ---
 - name: Add TerminAttr conf
-  hosts: my-host-group
+  hosts: my-host-grouo
   gather_facts: 'no'
   connection: local
   vars:
     provider:
       host: "{{ ansible_host }}"
       username: "cvpadmin"
-      password: "mycvp-password"
+      password: "my-password"
       authorize: 'yes'
       transport: eapi
       validate_certs: no
